@@ -1,0 +1,89 @@
+@startuml
+
+class Contrato {
+  +int id
+  +Date dataInicio
+  +Date dataFim
+  +Pedido pedido
+  +Automovel automovel
+  +Financiamento financiamento
+  +gerarContrato() : void
+  +consultarContrato() : Contrato
+  +cancelarContrato() : void
+}
+
+class Pedido {
+  +int id
+  +Date data
+  +Cliente cliente
+  +criarPedido() : Pedido
+  +modificarPedido() : void
+  +consultarPedido() : Pedido
+  +cancelarPedido() : void
+}
+
+class Automovel {
+  +String matrícula
+  +int ano
+  +String marca
+  +String modelo
+  +String placa
+  +registrarAutomovel() : void
+  +consultarAutomovel() : Automovel
+}
+
+class Financiamento {
+  +Banco banco
+  +float valor
+  +gerarFinanciamento() : Financiamento
+  +consultarFinanciamento() : Financiamento
+}
+
+class Cliente {
+  +String RG
+  +String CPF
+  +String Nome
+  +String Endereço
+  +String Profissão
+  +List entidadesEmpregadoras
+  +List rendimentos
+  +cadastrarCliente() : Cliente
+  +modificarCliente() : void
+  +consultarCliente() : Cliente
+}
+
+class Empregador {
+  +String Nome
+  +String Endereço
+  +adicionarEmpregador() : void
+  +consultarEmpregador() : Empregador
+}
+
+class Rendimento {
+  +float valor
+  +adicionarRendimento() : void
+  +consultarRendimento() : Rendimento
+}
+
+class Banco {
+  +String Nome
+  +String CNPJ
+  +consultarBanco() : Banco
+}
+
+class Agente {
+  +String Nome
+  +aprovarPedido() : void
+}
+
+Cliente "1" --> "0..*" Automovel 
+Agente "1" --> "0..1" Pedido
+Pedido "1" --> "1" Contrato 
+Contrato "1" --> "1" Automovel
+Contrato "1" --> "1" Financiamento
+Pedido "1" --> "1" Cliente
+Cliente "1" --> "0..*" Empregador
+Cliente "1" --> "0..*" Rendimento
+Financiamento "1" --> "1" Banco
+
+@enduml
