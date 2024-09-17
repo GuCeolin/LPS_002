@@ -1,0 +1,31 @@
+@startuml
+
+actor Cliente
+actor Agente
+actor Banco
+
+usecase "Cadastrar-se no Sistema" as UC1
+usecase "Introduzir Pedido de Aluguel" as UC2
+usecase "Modificar Pedido de Aluguel" as UC3
+usecase "Consultar Pedido de Aluguel" as UC4
+usecase "Cancelar Pedido de Aluguel" as UC5
+usecase "Modificar Pedido para Avaliação" as UC6
+usecase "Avaliar Pedido" as UC7
+usecase "Executar Contrato" as UC8
+usecase "Cadastrar Dados de Identificação" as UC9
+usecase "Registrar Automóvel" as UC10
+usecase "Associar Automóvel ao Contrato de Crédito" as UC11
+
+Cliente --> UC1
+Cliente --> UC2
+Cliente --> UC3
+Cliente --> UC4
+Cliente --> UC5
+Agente --> UC6
+Agente --> UC7
+Banco --> UC11
+Agente --> UC8
+Cliente --> UC9
+Cliente --> UC10
+
+@enduml
