@@ -1,14 +1,14 @@
-# Nome do projeto
-Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
+# Alugue seu Subaru
+Nesse projeto será criado um sistema de aluguel de carros de rally
 
 ## Integrantes
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
+* Gustavo Ceolin Silva Veloso
+* Hugo Viana
+* Douglas Viana
 * Nome completo do aluno 4
 
 ## Orientadores
-* Nome completo do professor 1
+* Cristiano de Macedo Neto
 * Nome completo do professor 2
 
 ## Instruções de utilização
