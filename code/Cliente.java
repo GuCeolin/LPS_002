@@ -1,13 +1,30 @@
+package com.example.LABS2;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String rg;
     private String cpf;
     private String nome;
     private String endereco;
     private String profissao;
-    private String empregador;
+    private Empregador empregador;
     private Double renda;
-    private List<Empregador> empregadores; // máximo 3 empregadores
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Empregador> empregadores;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Veiculo> veiculos; // lista de veículos associados ao cliente
 
     public Long getId() {
@@ -58,11 +75,11 @@ public class Cliente {
         this.profissao = profissao;
     }
 
-    public String getEmpregador() {
+    public Empregador getEmpregador() {
         return empregador;
     }
 
-    public void setEmpregador(String empregador) {
+    public void setEmpregador(Empregador empregador) {
         this.empregador = empregador;
     }
 
@@ -78,7 +95,27 @@ public class Cliente {
         return empregadores;
     }
 
+    public Empregador getEntidadeEmpregadora() {
+        return empregador;
+    }
+
+    public void setEntidadeEmpregadora(Empregador entidadeEmpregadora) {
+        this.empregador = entidadeEmpregadora;
+    }
+
+    // Getter e Setter para 'rendimento' (alias para 'renda')
+    public Double getRendimento() {
+        return renda;
+    }
+
+    public void setRendimento(Double rendimento) {
+        this.renda = rendimento;
+    }
+
     public void setEmpregadores(List<Empregador> empregadores) {
+        if (empregadores.size() > 3) {
+            throw new IllegalArgumentException("Um cliente pode ter no máximo 3 empregadores.");
+        }
         this.empregadores = empregadores;
     }
 
@@ -89,4 +126,11 @@ public class Cliente {
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
     }
+
+    public boolean isPresent() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
 }
+    
