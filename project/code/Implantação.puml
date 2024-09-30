@@ -1,0 +1,49 @@
+@startuml
+class Cliente["Cliente"] {
+  +String id
+  +String nome
+  +String endereço
+  +registrar()
+  +modificarPedido()
+  +cancelarPedido()
+  +visualizarPedido()
+}
+
+class Agente["Agente"] {
+  +avaliarPedido()
+  +modificarPedido()
+}
+
+class Contrato["Contrato"] {
+  +int duracao
+  +double preco
+  +obterTipo()
+  +associarCarro()
+}
+
+class Veiculo["Veículo"] {
+  +String placa
+  +String modelo
+  +String ano
+  +String marca
+  +registrar()
+}
+
+class ServidorCentral["Servidor Central"] {
+  +gerenciarPedidos()
+  +gerenciarContratos()
+}
+
+class ServidorWeb["Servidor Web"] {
+  +manipularPaginasWeb()
+}
+
+Cliente --|> Contrato
+Contrato --|> Veiculo
+Agente --|> Contrato
+ServidorCentral --|> Contrato
+ServidorCentral --|> Agente
+ServidorCentral --|> Veiculo
+ServidorWeb --|> ServidorCentral
+ServidorWeb --|> Cliente
+@enduml
