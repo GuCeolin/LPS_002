@@ -1,0 +1,10 @@
+@startuml
+package "Spring Boot" {
+    [Controller] --> [Service] : Chamada de Serviço
+    [Service] --> [Repository] : Chamada de Repositório
+}
+
+[Navegador Web] --> [Controller] : HTTP/HTTPS
+[Repository] --> [Banco de Dados] : TCP/IP
+
+@enduml
