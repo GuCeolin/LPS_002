@@ -1,0 +1,97 @@
+@startuml
+
+class Contrato {
+    +int id
+    +Date dataInicio
+    +Date dataFim
+    +Pedido pedido
+    +Veiculo veiculo
+    +Credito credito
+}
+
+class Pedido {
+    +int id
+    +Date data
+    +Cliente cliente
+}
+
+class Cliente {
+    +String nome
+    +String cpf
+    +List<Empregador> empregadores
+    +List<Rendimento> rendimentos
+}
+
+class Empregador {
+    +String nome
+    +String endereco
+}
+
+class Rendimento {
+    +float valor
+}
+
+class Veiculo {
+    +String marca
+    +String modelo
+    +int ano
+    +String placa
+}
+
+class Credito {
+    +float valor
+    +String banco
+}
+
+class Usuario {
+    +Usuario()
+    +Usuario(String nome, TipoUsuario tipo)
+    +Long getId()
+    +void setId(Long id)
+    +String getNome()
+    +void setNome(String nome)
+    +TipoUsuario getTipo()
+    +void setTipo(TipoUsuario tipo)
+    +List<Rendimento> getRendimentos()
+    +void setRendimentos(List<Rendimento> rendimentos)
+    +List<Empregador> getEmpregadores()
+    +void setEmpregadores(List<Empregador> empregadores)
+}
+
+class TipoUsuario {
+    +String descricao
+}
+
+class Agente {
+    +String nome
+}
+
+class Producer {
+    +Producer(RabbitTemplate rabbitTemplate, OrderRepository orderRepository)
+    +void sendOrder(String meal)
+}
+
+class Consumer {
+    +Consumer(OrderRepository orderRepository)
+    +void consumePizza(String meal) throws InterruptedException
+    +void consumeHamburger(String meal) throws InterruptedException
+    +void consumeSushi(String meal) throws InterruptedException
+    +void consumeSalad(String meal) throws InterruptedException
+    +void consumeTacos(String meal) throws InterruptedException
+    -void processOrder(String meal, String kitchen) throws InterruptedException
+    -Long findOrderId(String meal)
+}
+
+class OrderApplication {
+    +static void main(String[] args)
+}
+
+Contrato "1" -- "1" Pedido
+Pedido "1" -- "1" Cliente
+Cliente "1" -- "0..*" Empregador
+Cliente "1" -- "0..*" Rendimento
+Contrato "1" -- "1" Veiculo
+Contrato "1" -- "1" Credito
+Usuario "1" -- "1" TipoUsuario
+
+@enduml
